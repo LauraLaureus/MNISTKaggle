@@ -1,0 +1,2 @@
+model_checkpoint_path: "cnn06_gradient"
+all_model_checkpoint_paths: "cnn06_gradient"

@@ -36,7 +36,7 @@ import tensorflow as tf
 
 IMAGE_SIZE = 28
 NUM_CHANNELS = 1
-PIXEL_DEPTH = 255
+PIXEL_DEPTH = 360
 NUM_LABELS = 10
 VALIDATION_SIZE = 5000  # Size of the validation set.
 SEED = 66478  # Set to None for random seed.
@@ -78,8 +78,8 @@ def loadFromKaggle(filename,extractLabels,nskip=1):
     return data
 
 def main(_):
-    train_data,train_labels = loadFromKaggle('closed-train.csv', True,0)
-    test_data = loadFromKaggle('closed-test.csv', False,0)
+    train_data,train_labels = loadFromKaggle('gradient-train.csv', True,0)
+    test_data = loadFromKaggle('gradient-test.csv', False,0)
     print(train_data.shape)
     print(test_data.shape)
 
@@ -262,9 +262,9 @@ def main(_):
               eval_in_batches(validation_data, sess), validation_labels))
           sys.stdout.flush()
       # Finally print the result!
-      numpy.savetxt('cnn_closed.txt',numpy.round(eval_in_batches(test_data, sess)),delimiter=',')
-      OneHotConverter.convert('cnn_closed.txt')
-      saver.save(sess,'./cnn05_closed')
+      numpy.savetxt('cnn_gradient.txt',numpy.round(eval_in_batches(test_data, sess)),delimiter=',')
+      OneHotConverter.convert('cnn_gradient.txt')
+      saver.save(sess,'./cnn06_gradient')
       
 
 
