@@ -87,7 +87,7 @@ end
 
 BinaryCSV = zeros(42000,785);
 for i = 1:42000
-    BinaryCSV(i,2:785) = reshape(BinaryTrainImages(:,:,1),1,784);
+    BinaryCSV(i,2:785) = reshape(BinaryTrainImages(:,:,i),1,784);
     BinaryCSV(i,1) = labels(i);
 end
 csvwrite('binary-train.csv',BinaryCSV);
@@ -97,14 +97,14 @@ csvwrite('binary-train.csv',BinaryCSV);
 
 SkelCSV = zeros(42000,785);
 for i = 1:42000
-    SkelCSV(i,2:785) = reshape(erodeTrain(:,:,1),1,784);
+    SkelCSV(i,2:785) = 255*reshape(erodeTrain(:,:,i),1,784);
     SkelCSV(i,1) = labels(i);
 end
 csvwrite('skel-train.csv',SkelCSV);
 
 SkelCSV = zeros(28000,784);
 parfor i = 1:28000
-    SkelCSV(i,:) = reshape(erodeTest(:,:,1),1,784);
+    SkelCSV(i,:) = 255*reshape(erodeTest(:,:,i),1,784);
 end
 csvwrite('skel-test.csv',SkelCSV);
 
@@ -112,14 +112,14 @@ csvwrite('skel-test.csv',SkelCSV);
 
 ClosedCSV = zeros(42000,785);
 for i = 1:42000
-    ClosedCSV(i,2:785) = reshape(closeTrain(:,:,1),1,784);
+    ClosedCSV(i,2:785) = 255*reshape(closeTrain(:,:,i),1,784);
     ClosedCSV(i,1) = labels(i);
 end
 csvwrite('closed-train.csv',ClosedCSV);
 
 ClosedCSV = zeros(28000,784);
 parfor i = 1:28000
-    ClosedCSV(i,:) = reshape(closeTest(:,:,1),1,784);
+    ClosedCSV(i,:) = 255*reshape(closeTest(:,:,i),1,784);
 end
 csvwrite('closed-test.csv',ClosedCSV);
 
@@ -127,14 +127,14 @@ csvwrite('closed-test.csv',ClosedCSV);
 
 CannyCSV = zeros(42000,785);
 for i = 1:42000
-    CannyCSV(i,2:785) = reshape(cannyTrain(:,:,1),1,784);%% !
+    CannyCSV(i,2:785) = 255*~reshape(cannyTrain(:,:,i),1,784);%% !
     CannyCSV(i,1) = labels(i);
 end
 csvwrite('canny-train.csv',CannyCSV);
 
 CannyCSV = zeros(28000,784);
 parfor i = 1:28000
-    CannyCSV(i,:) = reshape(cannyTest(:,:,1),1,784);
+    CannyCSV(i,:) = 255*~reshape(cannyTest(:,:,i),1,784);
 end
 csvwrite('canny-test.csv',CannyCSV);
 
@@ -143,7 +143,7 @@ csvwrite('canny-test.csv',CannyCSV);
 
 GradientCSV = zeros(42000,785);
 for i = 1:42000
-    GradientCSV(i,2:785) = reshape(sobelTrain(:,:,1),1,784);%% !
+    GradientCSV(i,2:785) = reshape(sobelTrain(:,:,i),1,784);%% !
     GradientCSV(i,1) = labels(i);
 end
 csvwrite('gradient-train.csv',GradientCSV);
@@ -151,6 +151,6 @@ csvwrite('gradient-train.csv',GradientCSV);
 
 GradientCSV = zeros(28000,784);
 parfor i = 1:28000
-    GradientCSV(i,:) = reshape(sobelTest(:,:,1),1,784);
+    GradientCSV(i,:) = reshape(sobelTest(:,:,i),1,784);
 end
 csvwrite('gradient-test.csv',GradientCSV);

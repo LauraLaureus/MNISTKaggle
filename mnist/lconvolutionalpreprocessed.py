@@ -36,7 +36,7 @@ import tensorflow as tf
 
 IMAGE_SIZE = 28
 NUM_CHANNELS = 1
-PIXEL_DEPTH = 1
+PIXEL_DEPTH = 255
 NUM_LABELS = 10
 VALIDATION_SIZE = 5000  # Size of the validation set.
 SEED = 66478  # Set to None for random seed.
@@ -262,9 +262,9 @@ def main(_):
               eval_in_batches(validation_data, sess), validation_labels))
           sys.stdout.flush()
       # Finally print the result!
-      numpy.savetxt('cnn_extensive.txt',numpy.round(eval_in_batches(test_data, sess)),delimiter=',')
-      OneHotConverter.convert('cnn_extensive.txt')
-      saver.save(sess,'./cnn02')
+      numpy.savetxt('cnn_skel.txt',numpy.round(eval_in_batches(test_data, sess)),delimiter=',')
+      OneHotConverter.convert('cnn_skel.txt')
+      saver.save(sess,'./cnn03_skel')
       
 
 
