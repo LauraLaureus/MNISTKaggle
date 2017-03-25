@@ -1,0 +1,13 @@
+mnist/binary-train.csv
+mnist/canny-test.csv
+mnist/canny-train.csv
+mnist/closed-test.csv
+mnist/closed-train.csv
+mnist/convolutional.py
+mnist/gradient-test.csv
+mnist/gradient-train.csv
+mnist/skel-test.csv
+mnist/skel-train.csv
+mnist/test.csv
+mnist/train.csv
+sample_submission.csv
