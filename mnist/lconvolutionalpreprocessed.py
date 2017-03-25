@@ -78,8 +78,8 @@ def loadFromKaggle(filename,extractLabels,nskip=1):
     return data
 
 def main(_):
-    train_data,train_labels = loadFromKaggle('canny-train.csv', True,0)
-    test_data = loadFromKaggle('canny-test.csv', False,0)
+    train_data,train_labels = loadFromKaggle('closed-train.csv', True,0)
+    test_data = loadFromKaggle('closed-test.csv', False,0)
     print(train_data.shape)
     print(test_data.shape)
 
@@ -262,9 +262,9 @@ def main(_):
               eval_in_batches(validation_data, sess), validation_labels))
           sys.stdout.flush()
       # Finally print the result!
-      numpy.savetxt('cnn_canny.txt',numpy.round(eval_in_batches(test_data, sess)),delimiter=',')
-      OneHotConverter.convert('cnn_canny.txt')
-      saver.save(sess,'./cnn04_canny')
+      numpy.savetxt('cnn_closed.txt',numpy.round(eval_in_batches(test_data, sess)),delimiter=',')
+      OneHotConverter.convert('cnn_closed.txt')
+      saver.save(sess,'./cnn05_closed')
       
 
 
