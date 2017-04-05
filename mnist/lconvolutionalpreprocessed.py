@@ -108,24 +108,24 @@ def main(_):
     conv1_weights = tf.Variable(
         tf.truncated_normal([5, 5, NUM_CHANNELS, 32],  # 5x5 filter, depth 32.
                             stddev=0.1,
-                            seed=SEED, dtype=data_type()))
-    conv1_biases = tf.Variable(tf.zeros([32], dtype=data_type()))
+                            seed=SEED, dtype=data_type()), name = 'conv1_weights')
+    conv1_biases = tf.Variable(tf.zeros([32], dtype=data_type()), name = 'conv1_biases')
     conv2_weights = tf.Variable(tf.truncated_normal(
         [5, 5, 32, 64], stddev=0.1,
-        seed=SEED, dtype=data_type()))
-    conv2_biases = tf.Variable(tf.constant(0.1, shape=[64], dtype=data_type()))
+        seed=SEED, dtype=data_type()), name = 'conv2_weights')
+    conv2_biases = tf.Variable(tf.constant(0.1, shape=[64], dtype=data_type()),name = 'conv2_biases')
     fc1_weights = tf.Variable(  # fully connected, depth 512.
         tf.truncated_normal([IMAGE_SIZE // 4 * IMAGE_SIZE // 4 * 64, 512],
                             stddev=0.1,
                             seed=SEED,
-                            dtype=data_type()))
-    fc1_biases = tf.Variable(tf.constant(0.1, shape=[512], dtype=data_type()))
+                            dtype=data_type()),name = 'fc1_weights')
+    fc1_biases = tf.Variable(tf.constant(0.1, shape=[512], dtype=data_type()),name = 'fc1_biases')
     fc2_weights = tf.Variable(tf.truncated_normal([512, NUM_LABELS],
                                                   stddev=0.1,
                                                   seed=SEED,
-                                                  dtype=data_type()))
+                                                  dtype=data_type()),name = 'fc2_weights')
     fc2_biases = tf.Variable(tf.constant(
-        0.1, shape=[NUM_LABELS], dtype=data_type()))
+        0.1, shape=[NUM_LABELS], dtype=data_type()),name = 'fc2_biases')
 
     # We will replicate the model structure for the training subgraph, as well
     # as the evaluation subgraphs, while sharing the trainable parameters.
@@ -262,9 +262,11 @@ def main(_):
               eval_in_batches(validation_data, sess), validation_labels))
           sys.stdout.flush()
       # Finally print the result!
-      numpy.savetxt('cnn_gradient.txt',numpy.round(eval_in_batches(test_data, sess)),delimiter=',')
-      OneHotConverter.convert('cnn_gradient.txt')
-      saver.save(sess,'./cnn06_gradient')
+      fileName = 'cnn_gradient'
+      numpy.savetxt(fileName+'.txt',numpy.round(eval_in_batches(test_data, sess)),delimiter=',')
+      OneHotConverter.convert(fileName+'.txt')
+      saver.save(sess,'./cnn06b_gradient.ckpt')
+      
       
 
 
