@@ -16,12 +16,15 @@ canny = 0.97914
 skel = 0.74957
 extensive = 0.99214
 #normal = 0.99114
-accuracy = [ extensive,skel,canny,closed,gradient]
+c3nn =0.99200
+cnn3 = 0.98643
+accuracy = [ extensive,skel,canny,closed,gradient,c3nn,cnn3]
 
-weights = [1,1/5,1/2,1/3,1/4]
+weights = [1,1/7,1/4,1/5,1/6,1/2,1/3]
 print(weights)
 
-fileNames = ['./modelos/03-extensivetrain/cnn_extensive.txt','./modelos/03b-skel entrenado/cnn_skel.txt','./modelos/04 - canny 10000/cnn_canny.txt','./modelos/05 - closed 10000/cnn_closed.txt', './modelos/06 - gradient 10000/cnn_gradient.txt']
+fileNames = ['./modelos/03-extensivetrain/cnn_extensive.txt','./modelos/03b-skel entrenado/cnn_skel.txt','./modelos/04 - canny 10000/cnn_canny.txt','./modelos/05 - closed 10000/cnn_closed.txt', './modelos/06 - gradient 10000/cnn_gradient.txt',
+             './modelos/09 - cnn 3 conv layers/cnn_gradient.txt','./modelos/10 -cnn 3 fc layers/cnn_gradient.txt']
 result = numpy.zeros((28000,10))
 
 for i in range(len(fileNames)):
